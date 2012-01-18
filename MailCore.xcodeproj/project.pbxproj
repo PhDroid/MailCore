@@ -607,6 +607,7 @@
 				B778142B14C76C00008AF689 /* Headers */,
 				F8618B5410DADB5C00C41188 /* Sources */,
 				F8618B5510DADB5C00C41188 /* Frameworks */,
+				B76F121D14C7936E00A1C0C9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -690,6 +691,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		B76F121D14C7936E00A1C0C9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "DEST_DIR=$PROJECT_DIR'/../lib/MailCore'\nrm -rf $DEST_DIR\nmkdir $DEST_DIR\ncp -R $TARGET_BUILD_DIR'/include/' $DEST_DIR'/include/'\ncp -R $TARGET_BUILD_DIR'/libmailcore.a' $DEST_DIR\n";
+		};
 		F82D7C7F0F48AC8500ADA65C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
