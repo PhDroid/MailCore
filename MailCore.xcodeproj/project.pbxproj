@@ -11,11 +11,6 @@
 		2D538B46119803A6000AB4A2 /* CTSMTPAsyncConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */; };
 		2D538B48119803E2000AB4A2 /* CTSMTPAsyncConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2D538B43119803A6000AB4A2 /* CTSMTPAsyncConnection.m */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
-		B723474814CB40910035FDD1 /* libetpan_ios.a in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8B245CA144BABA4002B56DA /* libetpan_ios.a */; };
-		B723474914CB40910035FDD1 /* libsasl2.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = F88804610B42018500D400E7 /* libsasl2.dylib */; };
-		B723474A14CB40910035FDD1 /* libcrypto.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8483E4B09CE7C2800B80440 /* libcrypto.dylib */; };
-		B723474B14CB40920035FDD1 /* libiconv.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8483E4209CE7B9C00B80440 /* libiconv.dylib */; };
-		B723474C14CB40920035FDD1 /* libssl.dylib in CopyFiles */ = {isa = PBXBuildFile; fileRef = F8483E4009CE7B9000B80440 /* libssl.dylib */; };
 		B723474D14CB40A40035FDD1 /* MailCoreTypes.h in Headers */ = {isa = PBXBuildFile; fileRef = F81B885D0A74AA7100143DF6 /* MailCoreTypes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B778142C14C76C61008AF689 /* CTSMTPConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = F81B885A0A74AA7100143DF6 /* CTSMTPConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B778142D14C76C61008AF689 /* CTSMTPAsyncConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 2D538B42119803A6000AB4A2 /* CTSMTPAsyncConnection.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -185,20 +180,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		B723474714CB405F0035FDD1 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(TARGET_BUILD_DIR)";
-			dstSubfolderSpec = 0;
-			files = (
-				B723474814CB40910035FDD1 /* libetpan_ios.a in CopyFiles */,
-				B723474914CB40910035FDD1 /* libsasl2.dylib in CopyFiles */,
-				B723474A14CB40910035FDD1 /* libcrypto.dylib in CopyFiles */,
-				B723474B14CB40920035FDD1 /* libiconv.dylib in CopyFiles */,
-				B723474C14CB40920035FDD1 /* libssl.dylib in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F8A2FAA9144FA7BA00C03DB4 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -628,7 +609,6 @@
 				B778142B14C76C00008AF689 /* Headers */,
 				F8618B5410DADB5C00C41188 /* Sources */,
 				F8618B5510DADB5C00C41188 /* Frameworks */,
-				B723474714CB405F0035FDD1 /* CopyFiles */,
 				B76F121D14C7936E00A1C0C9 /* ShellScript */,
 			);
 			buildRules = (
@@ -724,7 +704,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "ROOT_EXPORT_DIR=$PROJECT_DIR'/../lib'\nMAIL_CORE_DIR=$ROOT_EXPORT_DIR'/MailCore'\nLIBETPAN_DIR=$ROOT_EXPORT_DIR'/libetpan'\n\nrm -rf $MAIL_CORE_DIR\nmkdir $MAIL_CORE_DIR\ncp -R $TARGET_BUILD_DIR'/include/' $MAIL_CORE_DIR'/include/'\ncp -R $TARGET_BUILD_DIR'/libmailcore.a' $MAIL_CORE_DIR\ncp -R $TARGET_BUILD_DIR'/libetpan_ios.a' $LIBETPAN_DIR\ncp -R $TARGET_BUILD_DIR'/libssl.dylib' $ROOT_EXPORT_DIR\ncp -R $TARGET_BUILD_DIR'/libiconv.dylib' $ROOT_EXPORT_DIR\ncp -R $TARGET_BUILD_DIR'/libcrypto.dylib' $ROOT_EXPORT_DIR\ncp -R $TARGET_BUILD_DIR'/libsasl2.dylib' $ROOT_EXPORT_DIR\n\n";
+			shellScript = "ROOT_EXPORT_DIR=$PROJECT_DIR'/../lib'\nMAIL_CORE_DIR=$ROOT_EXPORT_DIR'/MailCore'\nLIBETPAN_DIR=$ROOT_EXPORT_DIR'/libetpan'\n\nrm -rf $MAIL_CORE_DIR\nmkdir $MAIL_CORE_DIR\ncp -R $TARGET_BUILD_DIR'/include/' $MAIL_CORE_DIR'/include/'\n\n";
 		};
 		F82D7C7F0F48AC8500ADA65C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
