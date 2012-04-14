@@ -403,7 +403,43 @@
 		struct mailimap_msg_att *msg_att = (struct mailimap_msg_att *)clist_content(fetchResultIter);
 		if(msg_att != nil) {
 			[msgObject setSequenceNumber:msg_att->att_number];
-			[messages addObject:msgObject];
+
+            clistiter * item_iter;
+            for(item_iter = clist_begin(msg_att->att_list) ; item_iter != NULL ; item_iter = clist_next(item_iter)) {
+
+                struct mailimap_msg_att_item * att_item;
+                att_item = clist_content(item_iter);
+
+                if (att_item->att_type == MAILIMAP_MSG_ATT_ITEM_EXTENSION) {
+
+                    struct mailimap_extension_data * ext_data;
+                    ext_data = att_item->att_data.att_extension_data;
+
+                    if (ext_data->ext_extension == &mailimap_extension_xgmlabels) {
+
+                        struct mailimap_msg_att_xgmlabels * cLabels;
+                        NSMutableArray * labels;
+                        clistiter * cur;
+
+                        labels = [[NSMutableArray alloc] init];
+                        cLabels = ext_data->ext_data;
+
+                        for(cur = clist_begin(cLabels->att_labels) ; cur != NULL ; cur = clist_next(cur)) {
+                            char * cLabel;
+                            NSString * label;
+
+                            cLabel = clist_content(cur);
+                            label = [NSString stringWithUTF8String:cLabel];
+                            [labels addObject:label];
+                        }
+                        // you have the list of labels here
+                        [msgObject initWithLabels:labels];
+                        [labels release];
+                    }
+                }
+            }
+
+            [messages addObject:msgObject];
 		}
 		[msgObject release];
 		fetchResultIter = clist_next(fetchResultIter);

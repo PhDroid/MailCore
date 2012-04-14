@@ -31,6 +31,7 @@
 
 #import <Foundation/Foundation.h>
 #import <libetpan/libetpan.h>
+#import <libetpan/xgmlabels.h>
 
 /*!
 	@class	CTCoreMessage
@@ -89,6 +90,10 @@
 				connection is present.
 */
 - (int)fetchBody;
+
+- (void) initWithLabels:(NSMutableArray *)labels;
+- (NSArray *) labels;
+- (void) setLabels:(NSArray *)labels;
 
 /*!
 	@abstract	This method returns the parsed message body as an NSString.

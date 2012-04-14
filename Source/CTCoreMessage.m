@@ -63,7 +63,9 @@ char * etpan_encode_mime_header(char * phrase)
 }
 */
 
-@implementation CTCoreMessage
+@implementation CTCoreMessage {
+    id _labels;
+}
 @synthesize mime=myParsedMIME;
 
 - (id)init {
@@ -131,6 +133,21 @@ char * etpan_encode_mime_header(char * phrase)
 	return 0;
 }
 
+- (void) initWithLabels:(NSMutableArray *)labels{
+    [[_labels retain] initWithArray:labels];
+}
+
+- (NSArray *) labels {
+    return _labels;
+}
+
+- (void) setLabels:(NSArray *)labels {
+    int res = mailimap_has_xgmlabels([self imapSession]);
+    if (res != 1) {
+        return;
+    }
+    
+}
 
 - (NSString *)body {
 	NSMutableString *result = [NSMutableString string];
