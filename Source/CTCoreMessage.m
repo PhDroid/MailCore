@@ -142,11 +142,22 @@ char * etpan_encode_mime_header(char * phrase)
 }
 
 - (void) setLabels:(NSArray *)labels {
+    struct mailimap_set * set;
+    struct mailimap_msg_att_xgmlabels * cLabels;
+
     int res = mailimap_has_xgmlabels([self imapSession]);
     if (res != 1) {
         return;
     }
-    
+
+    NSMutableArray *label_list = [[NSMutableArray alloc] initWithArray:labels];
+    cLabels = mailimap_msg_att_xgmlabels_new((clist *) label_list);
+
+    //fl_sign can be either 1 or -1.
+    //if 1 they use "+"
+    //if -1 "-"
+    res = mailimap_uid_store_xgmlabels(self.imapSession, set, 1, 0, cLabels);
+    [label_list release];
 }
 
 - (NSString *)body {
